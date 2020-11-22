@@ -1,0 +1,95 @@
+{% extends 'index.html' %} {% block content %}
+<center>
+    <p><b>Table</b></p>
+
+    <div class='table-bordered' style='overflow: auto; height: 200px; width: 35%; margin:0 auto'>
+        <table>
+            <th>
+                <td>total_bill</td>
+                <td>tip</td>
+                <td>sex</td>
+                <td>smoker</td>
+                <td>day</td>
+                <td>time</td>
+                <td>size</td>
+            </th>
+            {% for item in data %}
+            <tr>
+                <td>*</td>
+                <td>{{item[0]}}</td>
+                <td>{{item[1]}}</td>
+                <td>{{item[2]}}</td>
+                <td>{{item[3]}}</td>
+                <td>{{item[4]}}</td>
+                <td>{{item[5]}}</td>
+                <td>{{item[6]}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <form method="POST" action="http://localhost:5000/update_fn">
+        <br>
+        <p><b>Input New Data</b></p>
+        <div class="input-group mb-3" style="width: 500px">
+            <span class="input-group-text" style="width: 125px">Gender:</span>
+            <select name="sex" style="width: 250px" class="form-control" required="required">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option disabled selected hidden>Customer gender?</option>
+        </select>
+        </div>
+        <div class="input-group mb-3" style="width: 500px">
+            <span class="input-group-text" style="width: 125px">Smoker:</span>
+            <select name="smoker" style="width: 250px" class="form-control" required="required">
+            <option value="smoker_yes">yes</option>
+            <option value="smoker_no">no</option>
+            <option disabled selected hidden>Smoker?</option>
+        </select>
+        </div>
+        <div class="input-group mb-3" style="width: 500px">
+            <span class="input-group-text" style="width: 125px">Day:</span>
+            <select name="day" style="width: 250px" class="form-control" required="required">
+            <option value="thur">Thursday</option>
+            <option value="fri">Friday</option>
+            <option value="sat">Saturday</option>
+            <option value="sun">Sunday</option>
+            <option disabled selected hidden>The day customer visit?</option>
+        </select>
+        </div>
+        <div class="input-group mb-3" style="width: 500px">
+            <span class="input-group-text" style="width: 125px">Time:</span>
+            <select name="time" style="width: 250px" class="form-control" required="required">
+            <option value="lunch">Lunch</option>
+            <option value="din">Dinner</option>
+            <option disabled selected hidden>The time customer visit?</option>
+        </select>
+        </div>
+        <div class="input-group mb-3" style="width: 500px">
+            <span class="input-group-text" style="width: 125px">Size:</span>
+            <select name="size" style="width: 250px" class="form-control" required="required">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option disabled selected hidden>Size?</option>
+        </select>
+        </div>
+        <div class="row" style="width: 500px">
+            <div class="col-md-6" style="width: 250px">
+                <label for="bill">Total Bill:</label>
+                <input type="number" name="bill" step="0.01" min="1" max="1000" style="width: 250px" id="bill" class="form-control" required=True/>
+            </div>
+            <div class="col-md-6" style="width: 250px">
+                <label for="tip">Tips:</label>
+                <input type="number" name="tip" step="0.01" min="0" max="1000" style="width: 250px" id="tip" class="form-control" required=True/>
+            </div>
+        </div>
+        <br>
+        <button type="submit" style="background-color: rgb(4,122,133); color: whitesmoke" class="btn btn-info">Input Data</button>
+    </form>
+    <br>
+</center>
+
+{% endblock %}

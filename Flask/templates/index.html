@@ -1,0 +1,227 @@
+{% extends "material/base.html" %}
+{% block content %}
+<div class = "showcase container blue lighten-3">
+    <div class = "row">
+        <div class = "col 12 m10 offset-ml center">
+            <center><h2>Hotel Cancellation Predictor</h2></center>
+            <p></p>
+            <a href = "{{url_for('index')}}" class = "btn btn-small blue white-text waves-effect waves-dark">Reset</a>
+            <a href = "{{url_for('preview')}}" class = "btn btn-small blue white-text waves-effect waves-dark">View Dataset</a>
+            <a href = "{{url_for('category')}}" class = "btn btn-small blue white-text waves-effect waves-dark">Visualization</a>
+        </div>
+
+        
+    </div>
+</div>
+<section class = "section section-signup">
+    <div class = "container">
+        <div class = "row">
+
+
+            <div class = "col s12 m4">
+                <div class="card-panel grey lighten-4 grey-text text-darken-4 z-depth-0">
+                    <form action="{{ url_for('analyze')}}" method="POST">
+                        <div class = "input-field">
+                            <select id="hotel" name="Hotel Choice">
+                                <option value="" disabled selected>Select Hotel</option>
+                                <option value="1">City Hotel</option>
+                                <option value="0">Resort Hotel</option>
+                            </select>
+                            <label for = "hotel">Select Hotel Type</label>
+                        </div>
+
+                        <div class = "input-field">
+                            <select id="location" name="location">
+                                <option value="" disabled selected>Select Location</option>
+                                <option value="1">International (Outside Portugal)</option>
+                                <option value="0">Local</option>
+                            </select>
+                            <label for = "location">Select Booking Location</label>
+                        </div>
+
+                        <div class="input-field">
+                            <p class="range-field">
+                                 <input type="range" id="lead_time" name="lead_time" min="0" max="737" value="0"
+                            step="1" >
+                             <label for="lead_time">Lead time</label>
+                        </div>
+
+                        <div class = "input-field">
+                            <select id="market_segment" name="market_segment">
+                                <option value="" disabled selected>Select Market Segment</option>
+                                <option value="Direct">Direct</option>
+                                <option value="Corporate">Corporate</option>
+                                <option value = "Online TA">Online TA</option>
+                                <option value = "Offline TA/TO">Offline TA/TO</option>
+                                <option value = "Complementary">Complementary</option>
+                                <option value = "Groups">Groups</option>
+                                <option value = "Aviation">Aviation</option>
+                            </select>
+                            <label for = "market_segment">Select Market Segment</label>
+                        </div>
+
+                        <div class = "input-field">
+                            <select id="deposit_type" name="deposit_type">
+                                <option value="" disabled selected>Select Deposit Type</option>
+                                <option value="No Deposit">No Deposit</option>
+                                <option value="Refundable">Refundable</option>
+                                <option value="Non Refund">Non Refund</option>
+                            </select>
+                            <label for = "deposit_type">Select Deposit Type</label>
+                        </div>
+
+                        <div class = "input-field">
+                            <select id="parking_space" name="parking_space">
+                                <option value="" disabled selected>Do You Need a Parking Space</option>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                            <label for = "parking_space">Do You Need a Parking Space ? </label>
+                        </div>
+                        
+
+                        <div class = "input-field">
+                            <select id="total_of_special_requests" name="total_of_special_requests">
+                                <option value="" disabled selected>Total of Special Request</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <label for = "total_of_special_requests">Total of Special Request</label>
+                        </div>
+
+                        <div class = "input-field">
+                            <select id="is_previously_cancelled" name="is_previously_cancelled">
+                                <option value="" disabled selected>Does This Booking Ever Been Cancelled Before</option>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                            <label for = "is_previously_cancelled">Does This Booking Ever Been Cancelled Before </label>
+                        </div>
+
+                        <div class = "input-field">
+                            <select id="is_repeated_guest" name="is_repeated_guest">
+                                <option value="" disabled selected>Is This a Booking of Repeated Guest</option>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                            <label for = "is_repeated_guest">Is This a Booking of Repeated Guest </label>
+                        </div>
+
+                        <div class = "input-field">
+                            <select id="is_booking_changes" name="is_booking_changes">
+                                <option value="" disabled selected>Does This Booking Ever Changes</option>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                            <label for = "is_booking_changes">Does This Booking Ever Changes </label>
+                        </div>
+
+                        <div class = "input-field">
+                            <select id="customer_type" name="customer_type">
+                                <option value="" disabled selected>Select Customer Type</option>
+                                <option value="Transient">Transient</option>
+                                <option value="Contract">Contract</option>
+                                <option value="Transient-Party">Transient-Party</option>
+                                <option value="Group">Group</option>
+
+                            </select>
+                            <label for = "customer_type">Select Customer Type</label>
+                        </div>
+
+                        <div class="input-field">
+                            <p class="range-field">
+                                 <input type="range" id="total_stays" name="total_stays" min="0" max="69" value="0"
+                            step="1" >
+                             <label for="total_stays">Total Stays</label>
+                        </div>
+
+                        <div class="input-field">
+                            <p class="range-field">
+                                 <input type="range" id="guests" name="guests" min="1" max="55" value="1"
+                            step="1" >
+                             <label for="guests">Total Guests</label>
+                        </div>
+
+                        <input type="submit" value="Predict" >
+                        <input type="reset" value="Clear" >    
+                    </form>
+                </div>
+            </div>
+            <div class = "col s12 m4 offers">
+                <div class = "card-panel blue lighten-4 grey-text text-darken-4 z-depth-0">
+            <p>Hotel : {{hotel}}</p>
+            <p>Booking Location : {{location}}</p>
+            <p>Lead Time : {{lead_time}}</p>
+            <p>Market Segment: {{market_segment}}</p>
+            <p>Deposit Type: {{deposit_type}}</p>
+            <p>Parking Space: {{parking_space}}</p>
+            <p>Total Special Requests: {{total_of_special_request}}</p>
+            <p>Previously Cancelled: {{is_previously_cancelled}} </p>
+            <p>Repeated Guest: {{is_repeated_guest}}</p>
+            <p>Booking Changes: {{is_booking_changes}}</p>
+            <p>Customer Type: {{customer_type}}</p>
+            <p>Total Stays: {{total_stays}}</p>
+            <p>Total Guests: {{total_guest}}</p>
+                </div>
+            </div>
+
+            <div class = "col s12 m4 offers">
+                <h5>Cancellation Prediction</h5>
+                    <div class = "collection" role = "alert">
+                        <p class = "collection-item active blue"> The Chances of Cancellation is {{round_prediction}} % </p>
+                        <p class = "collection-item active blue"> The Chances of Confirmed is {{round_prediction_confirmed}} % </p>
+                    </div>
+                <div class = "card-image waves-effect waves-block waves-light">
+                    {% if final_prediction == 'Confirmed' %}
+                        <center>
+                        <img src = "static/checkbox.png" width = "200px" height = "200px" display = "block" margin-left = "auto" margin-right = "auto">
+                        <h5><b>This Booking Will More Likely To Be Confirmed</b></h5>
+                        </center>
+                    {% elif final_prediction == 'Cancelled' %}
+                        <center>
+                        <img src = "static/close.png" width = "200px" height = "200px" display = "block" margin-left = "auto" margin-right = "auto">
+                        <h5><b>This Booking Will more Likely To Be Cancelled</b></h5>
+                        </center>
+                    {% else %}
+                        <p></p>
+                    
+                    {% endif %}
+                      
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</section>
+
+{% endblock %}
+
+
+{% block scripts %}
+{{super()}}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Compiled and minified JavaScript -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+<!-- <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+   var elems = document.querySelectorAll('select');
+   var instances = M.FormSelect.init(elems, options);
+ });
+</script> -->
+
+<script>
+   // Or with jQuery
+
+ $(document).ready(function(){
+   $('select').formSelect();
+ });
+</script>
+
+
+
+{% endblock %}

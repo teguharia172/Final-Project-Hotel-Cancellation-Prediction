@@ -1,0 +1,31 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+    <form action="{{url_for('pie_fn')}}" id="form">
+        <div class ="my-5 row d-flex justify-content-center">
+            <!-- Hue -->
+            <div class="col-2">
+                <p class="text-center lead">Hue</p>
+                <select class="form-control" name="hue" onchange="form.submit()">
+                    {% for drop in drop_hue %}
+                        {% if focus_hue == drop[0] %}
+                            return '<option value={{drop[0]}} selected>{{drop[1]}}</option>'
+                        {% else %}
+                            return '<option value={{drop[0]}}>{{drop[1]}}</option>'
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    </form>
+
+<!-- Menampilkan chart / plot -->
+<div class='chart' id='plot'>
+    <script>
+        var graphs = {{plot | safe}};
+        Plotly.plot('plot',graphs,{})
+    </script>
+</div>
+
+{% endblock %}

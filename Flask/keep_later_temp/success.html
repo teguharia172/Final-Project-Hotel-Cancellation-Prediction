@@ -1,0 +1,31 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<center>
+    <div class="p1">
+        <b>Input Success!</b>
+    </div>
+    <br>
+    <div class="container"  >
+            <b>Total Bill: </b> {{total_bill}}<br>
+            <b>Tip: </b> {{tip}}<br>
+            <b>Gender: </b> {{sex}}<br>
+            <b>Smoker: </b> {{smoker}}<br>
+            <b>Day: </b> {{day}}<br>
+            <b>Time: </b> {{time}}<br>
+            <b>Size: </b> {{size}}<br>
+    </div>
+    <hr>
+    <a href="/db_fn" target="_self" >
+        <button style="background-color: rgb(255, 90, 95); color: whitesmoke" class="btn btn-light">
+            Input Again
+        </button>    
+    </a>
+    <a href="/" target="_self" >
+        <button style="background-color: rgb(255, 90, 95); color: whitesmoke" class="btn btn-light">
+            Back to Home
+        </button>    
+    </a>
+</center>
+
+{% endblock %}

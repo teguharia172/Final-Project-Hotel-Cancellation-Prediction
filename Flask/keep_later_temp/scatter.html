@@ -1,0 +1,60 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+    <!-- Menu Dropdown -->
+    <form action="{{ url_for('scatt_fn')}}" id="form">
+        <div class="my-5 row d-flex justify-content-around">
+            
+            <!-- Sumbu X -->
+            <div class="col-2">
+                <p class="text-center lead">X</p>
+                <select class="form-control" name="cat_x" onchange="form.submit()">
+                    {% for drop in drop_x %}
+                        {% if focus_x == drop[0] %}
+                            return '<option value={{drop[0]}} selected>{{drop[1]}}</option>'
+                        {% else %}
+                            return '<option value={{drop[0]}}>{{drop[1]}}</option>'
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <!-- Sumbu Y -->
+            <div class="col-2">
+                <p class="text-center lead">Y</p>
+                <select class="form-control" name="cat_y" onchange="form.submit()">
+                    {% for drop in drop_y %}
+                        {% if focus_y == drop[0] %}
+                            return '<option value={{drop[0]}} selected>{{drop[1]}}</option>'
+                        {% else %}
+                            return '<option value={{drop[0]}}>{{drop[1]}}</option>'
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <!-- Hue -->
+            <div class="col-2">
+                <p class="text-center lead">Hue</p>
+                <select class="form-control" name="hue" onchange="form.submit()">
+                    {% for drop in drop_hue %}
+                        {% if focus_hue == drop[0] %}
+                            return '<option value={{drop[0]}} selected>{{drop[1]}}</option>'
+                        {% else %}
+                            return '<option value={{drop[0]}}>{{drop[1]}}</option>'
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+
+        </div>
+    </form>
+
+    <!-- Chart / Plot -->
+    <div class="chart" id="plot">
+        <script>
+            var graphs = {{plot | safe}};
+            Plotly.plot('plot', graphs, {});
+        </script>
+    </div>
+
+{% endblock %}

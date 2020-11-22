@@ -1,0 +1,105 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+    <!-- Menu Dropdown -->
+    <form action="{{url_for('cat_fn', nav=False)}}" id="form">
+        <div class="my-5 row d-flex justify-content-around">
+            <!-- Dropdwon Jenis Plot -->
+            
+            <!-- Menu dropdown ini akan menampilkan list menu jenis-jenis plot yang ada -->
+            <!-- Di sini kita akan melakukan looping terhadap list yang dikirim dari API -->
+            <!-- list tersebut adalah drop_plot -->
+
+            <div class="col-2">
+                <p class="text-center lead">Plot</p>
+                <select class="form-control" name="cat_plot" onchange="form.submit()">
+                    {% for drop in drop_plot %}
+                        {% if focus_plot == drop[0] %}
+                            return '<option value={{drop[0]}} selected>{{drop[1]}}</option>'
+                        {% else %}
+                            return '<option value={{drop[0]}}>{{drop[1]}}</option>'
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Dropdwon Sumbu X -->
+            <div class="col-2">
+                <p class="text-center lead">X</p>
+                <select class="form-control" name="cat_x" onchange="form.submit()">
+                    {% for drop in drop_x %}
+                        {% if focus_x == drop[0] %}
+                            return '<option value={{drop[0]}} selected>{{drop[1]}}</option>'
+                        {% else %}
+                            return '<option value={{drop[0]}}>{{drop[1]}}</option>'
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <!-- Dropdwon Sumbu Y -->
+            <div class="col-2">
+                <p class="text-center lead">Y</p>
+                {% if focus_estimator == 'count' and focus_plot == 'histplot' %}
+                    <select class="form-control" name="cat_y" disabled>
+                        <option>Disable</option>
+                    </select>
+                {% else %}
+                    <select class="form-control" name="cat_y" onchange="form.submit()">
+                        {% for drop in drop_y %}
+                            {% if focus_y == drop[0] %}
+                                return '<option value={{drop[0]}} selected>{{drop[1]}}</option>'
+                            {% else %}
+                                return '<option value={{drop[0]}}>{{drop[1]}}</option>'
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                {% endif %}
+            </div>
+            
+            <!-- Dropdwon Estimator -->
+            <div class="col-2">
+                <p class="text-center lead">Estimator</p>
+                {% if focus_plot == 'boxplot' %}
+                    <select class="form-control" name="estimator" disabled onchange="form.submit()">
+                        <option value='count' selected>Disable</option>
+                    </select>
+                {% else %}
+                    <select class="form-control" name="estimator" onchange="form.submit()">
+                        {% for drop in drop_estimator %}
+                            {% if focus_estimator == drop[0] %}
+                                return '<option value={{drop[0]}} selected>{{drop[1]}}</option>'
+                            {% else %}
+                                return '<option value={{drop[0]}}>{{drop[1]}}</option>'
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                {% endif %}
+            </div>
+            
+            <!-- Dropdwon Hue -->
+            <div class="col-2">
+                <p class="text-center lead">Hue</p>
+                <select class="form-control" name="hue" onchange="form.submit()">
+                    {% for drop in drop_hue %}
+                        {% if focus_hue == drop[0] %}
+                            return '<option value={{drop[0]}} selected>{{drop[1]}}</option>'
+                        {% else %}
+                            return '<option value={{drop[0]}}>{{drop[1]}}</option>'
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+
+        </div>
+    </form>
+
+    <!-- Chart / Plot -->
+    <div class="chart" id="plot">
+        <script>
+            var graphs = {{plot | safe}};
+            Plotly.plot('plot',graphs,{});
+        </script>
+    </div>
+{% endblock content %}

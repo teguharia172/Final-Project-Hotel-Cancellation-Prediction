@@ -1,0 +1,26 @@
+{% extends "material/base.html" %}
+{% block content %}
+<div class = "showcase container blue lighten-3">
+    <div class = "row">
+        <div class = "col 12 m10 offset-ml center">
+            <center><h2>Hotel Cancellation Predictor</h2></center>
+            <p></p>
+            <a href = "{{url_for('index')}}" class = "btn btn-small blue white-text waves-effect waves-dark">Back</a>
+           
+        </div>
+    </div>
+</div>
+
+<div class = "container">
+        {{df_view.to_html(classes = "table striped", na_rep = "-") | safe}}
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+{{super()}}
+
+
+
+{% endblock %}

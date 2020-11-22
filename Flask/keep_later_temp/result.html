@@ -1,0 +1,29 @@
+{% extends 'index.html' %} {% block content %}
+<center>
+    <div class="p1">
+        <b>Tip Prediction</b>
+    </div>
+    <br>
+    <div class="container">
+        <b>Total Bill: </b> {{total_bill}}<br>
+        <b>Gender: </b> {{sex}}<br>
+        <b>Smoker: </b> {{smoker}}<br>
+        <b>Day: </b> {{day}}<br>
+        <b>Time: </b> {{time}}<br>
+        <b>Size: </b> {{size}}<br>
+        <b>Tip Prediction : </b> {{tip_pred}}<br>
+    </div>
+    <hr>
+    <a href="/pred_lr" target="_self">
+        <button style="background-color: rgb(255, 90, 95); color: whitesmoke" class="btn btn-light">
+            Predict Again
+        </button>
+    </a>
+    <a href="/" target="_self">
+        <button style="background-color: rgb(255, 90, 95); color: whitesmoke" class="btn btn-light">
+            Back to Home
+        </button>
+    </a>
+</center>
+
+{% endblock %}
