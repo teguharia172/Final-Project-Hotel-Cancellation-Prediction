@@ -1,5 +1,7 @@
 # Final-Project-Hotel-Cancellation-Prediction
-Exploratory Data Analysis, Machine Learning Modeling, and Local Dashboard Deployment of the machine learning model. data could be found from [here](https://www.kaggle.com/jessemostipak/hotel-booking-demand) 
+Exploratory Data Analysis, Machine Learning Modeling, and Local Dashboard Deployment of the machine learning model. data could be found from [here](https://www.kaggle.com/jessemostipak/hotel-booking-demand) .
+
+For Dashboard with the tuned model please check it [here](https://drive.google.com/drive/folders/1Bh5uxq4kvW7s-19wHRIg197fcbJInyjc?usp=sharing)
 
 ![Final Project Proposal](https://user-images.githubusercontent.com/57277832/100371305-27dd8f00-303a-11eb-8789-8143683bde7e.png)
 
